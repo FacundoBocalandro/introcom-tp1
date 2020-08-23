@@ -34,7 +34,7 @@
 				width: 90%;
 				padding: 5px 10px 5px 26px
 			}
-	
+
             .garden {
 				position: relative;
 				margin: auto;
@@ -61,7 +61,7 @@
 			  background-color: lightblue;
 			  margin-top: 20px;
 			}
-			
+
 			.orintation-output {
 			  width: 100%;
 			  padding: 50px 0;
@@ -93,7 +93,7 @@
                 .catch(console.error)
         }
     </script>
-	
+
     <script>
         window.addEventListener('devicemotion', handleMotion);
 
@@ -120,7 +120,7 @@
             output.innerHTML = properties;
         }
     </script>
-    
+
 </head>
 <body>
 <button id="motion-button" onclick="requestMotionPermission()">Enable Motion</button>
@@ -137,12 +137,12 @@
 <script>
 		var ball = document.querySelector('.ball');
 		var garden = document.querySelector('.garden');
-		
+
 		window.addEventListener('deviceorientation', handleOrientation);
-		
+
 		var maxX = 180;
-		var maxY = 180;     
-			
+		var maxY = 180;
+
         function handleOrientation(event) {
             let output = document.getElementById('orientation-output');
             let properties = '';
@@ -150,16 +150,16 @@
                 properties += prop + ': ' + event[prop] + '<br>';
             }
             output.innerHTML = properties;
-			
-			var x = event.beta;  // In degree in the range [-180,180]
-			var y = event.gamma; // In degree in the range [-90,90]
+
+            var x = Math.round(event.gamma); // In degree in the range [-90,90]
+            var y = Math.round(event.beta);  // In degree in the range [-180,180]
 
 			   // Because we don't want to have the device upside down
 			  // We constrain the x value to the range [-90,90]
 			if (x >  90) { x =  90};
 			if (x < -90) { x = -90};
 
-			// To make computation easier we shift the range of 
+			// To make computation easier we shift the range of
 			// x and y to [0,180]
 		    x += 90;
 			y += 90;
@@ -174,7 +174,7 @@
 	function hideProperties() {
 	var mo = document.getElementById("motion-output");
 	var oo = document.getElementById("orientation-output");
-	
+
 	if (mo.style.display != "block" && oo.style.display != "block" ) {
 		mo.style.display = "block";
 		oo.style.display = "block";
@@ -183,6 +183,6 @@
 		oo.style.display = "none";
 	}
 	}
-	
+
 	</script>
 </html>
